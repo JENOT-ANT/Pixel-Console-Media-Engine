@@ -765,4 +765,5 @@ namespace egn { // |Game Engine / GUI| API namspace
 				display->draw_picture(&pictures[frame_index], position, scale);
 			}
 		};
-    
+	}
+}
