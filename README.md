@@ -6,3 +6,6 @@ C++ library based on WinAPI useful to create games/visual applications in consol
 
 ## REQUIREMENTS:
 - windows.h library
+
+## Contribution:
+Developers who want to contribute to this project are welcome. You can send a message using [**Discussion**](https://github.com/JENOT-ANT/Pixel-Console-Media-Engine/discussions) tab.
