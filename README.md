@@ -1,6 +1,12 @@
 # Pixel-Console-Media-Engine
 C++ library based on WinAPI useful to create games/visual applications in console window.
 
+## Instructions:
+- **I advise you to save in some form your current console window properties, so you can return to your normal settings.**
+- To render visual elements of this project, you might need to set Raster Font (size: 8x8), and proper buffer and window size (resolution used in your project, in **draw** program it's 80x80) in console window properties.
+- To use mouse in a proper way, you might need to switch of "QuickEditMode" in console window properties.
+
+## Contents:
 - engine.h  > library
 - draw.cpp  > bonus example program (this program is to draw images in engine picture format)
 
