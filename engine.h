@@ -518,7 +518,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			for (int i = 0; i < RESOLUTION; i++) {
 				char_buffer[i] = (char)0;
 			}
-			WriteConsoleOutputCharacter(handle, char_buffer, (DWORD)RESOLUTION, { 0, 0 }, &written_chars);
+			WriteConsoleOutputCharacter(handle, (LPCSTR)char_buffer, (DWORD)RESOLUTION, { 0, 0 }, &written_chars);
 		}
 
 		void clear(int color = 0) {
