@@ -4,7 +4,7 @@
 
 /*
 
-coded by <ANT/JENOT/Antoni Świtaj>
+coded by <JENOT>
 
 	0 1 0
 	0 0 1  <Hackers' Community>
@@ -13,28 +13,30 @@ coded by <ANT/JENOT/Antoni Świtaj>
 
 
 Copyright:
-!(c) Public Domain with restrictions* below
+!(c) Public Domain with some restrictions* below
 
 *RESTRICTIONS:
 
-> This |code / software / whatever You call it|
-can be used only for purposes that are ETHICAL, MORAL, lawful and don't harm anyone and anything!
+> This code and any of its versions (for instance, that are binary, compiled or transformed in any other way)
+can be used only for purposes that are not against ETHICS, MORALITY, and do not harm anyone and anything!
 
-> If You are against those rules (You don't agree with them), You are not allowed
-to use this |code / software / whatever You call it|!
+> In case You are against these rules, You are not allowed to
+use this code and any of its versions (for instance, that are binary, compiled or transformed in any other way).
 
-0. Remember -> use it wisely :)
-1. You do not need to provide any attribution (in other words, it's not mandatory), but I would really appreciate if you provided them (like: engine coded by ANT or something like that).
-2. Contents done by You via this software is your :)
-3. Just freedom.
 
-WARNING!!!
-NO WARRANTY:
-You Are using this |code / software / whatever You call it|
+Tips:
+0. Remember to use it wisely :)
+1. You do not need to provide any attribution (in other words, it's not mandatory but would be appreciated).
+2. Original contents done by You via this software are yours.
+
+
+WARNING!!! NO WARRANTY:
+You Are using this code
+and any of its versions (for instance, that are binary, compiled or transformed in any other way)
 on Your own RESPONSIBILITY!
-There is no WARRANTY!!! (NOTHING, really! Don't even think about it, please...)
+There is no WARRANTY.
 
-[If Your device crushes, don't tell me I haven't warned You, sorry...]
+[ If Your device crushes, don't tell me I haven't warned You... ]
 
 */
 
@@ -116,6 +118,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 	};
 
 
+
 	struct Picture {
 		int* color_map;
 		Pair SIZE = { 0, 0 };
@@ -132,7 +135,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 
 	public:
 		void set_size(Pair image_size) {
-			//this function is used to set image size buffer by hand
+			// This function is used to set an image's size-buffer by hand
 			SIZE = image_size;
 			color_map = new int[SIZE.y * SIZE.x];
 		}
@@ -174,7 +177,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 
 
 	struct Small_image {
-		//this is not recomended image structure type, mayby use Picture structure instead?
+		// This is not a recomended image-structure type, mayby use the Picture structure instead?
 	public:
 		int color_map[MAX_SMALL_IMAGE_SIZE];
 		Pair SIZE = { 0, 0 };
@@ -196,7 +199,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 
 			image_file.open(file_path, std::ios::in);
 
-			// first line should be x image size
+			// First line of the file should represent x dimension of the image
 			std::getline(image_file, line);
 			if (line != "") {
 				SIZE.x = std::atoi(line.c_str());
@@ -207,7 +210,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 
 				while (std::getline(image_file, line)) {
 
-					for (int i = 0; i <= line.size(); i++) { // i <= line.size()-1 + 1 (last time not to add anything to value, just to save last(line.size() - 1) value in the color map)
+					for (int i = 0; i <= line.size(); i++) { // [ i <= line.size() - 1 + 1 ] (last time not to add anything to the value, just to save the last (line.size() - 1) value in the color map)
 						if (line[i] == ' ' or i == line.size()) {
 							color_map[j] = std::atoi(number.c_str());
 							number = "";
@@ -224,9 +227,9 @@ namespace egn { // |Game Engine / GUI| API namspace
 		}
 	};
 
-	struct Font {
-		//private:
 
+	struct Font {
+	
 	public:
 		int letter_amount;
 		//char letters[255];
@@ -311,6 +314,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 		}
 	};
 
+
 	class Textbox {
 	
 	public:
@@ -326,6 +330,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			BACKGROUND_COLOR = textbox_background_color;
 		}
 	};
+
 
 	class Button {
 	private:
@@ -383,6 +388,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 	
 	};
 
+
 	class Inputbox {
 	public:
 		Button box;
@@ -407,6 +413,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			box.TEXT += letter;
 		}
 	};
+
 
 	class GUI_page {
 
@@ -443,12 +450,11 @@ namespace egn { // |Game Engine / GUI| API namspace
 		}
 	};
 
-	// -----DISPLAY-----
 
+	// -----DISPLAY-----
 	class Display {
 
-		// atributtes:
-	private:
+	private: // Atributtes
 		HANDLE handle;
 		DWORD written_chars;
 		WCHAR char_buffer[MAX_BUFFER_SIZE];
@@ -463,9 +469,8 @@ namespace egn { // |Game Engine / GUI| API namspace
 		Pair SIZE;
 		int RESOLUTION;
 
-		// methods:
-
-	private:
+		
+	private: // Methods
 		int convert_2D_to_buffer_coordinates(Pair position, Pair limit) {
 			if (position.x < limit.x and position.y < limit.y and position.x >= 0 and position.y >= 0) {
 				return position.y * SIZE.x + position.x;
@@ -540,7 +545,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			int screen_buffer_index = convert_2D_to_buffer_coordinates(position, { SIZE.x, SIZE.y });
 
 			if (screen_buffer_index != -1) {
-				if (color != ALPHA and attribute_buffer[screen_buffer_index] != (WORD)color) { // -1 color is transparent and -1 index mean that pixel is outside the buffer
+				if (color != ALPHA and attribute_buffer[screen_buffer_index] != (WORD)color) { // -1 color means transparent and -1 index means that the pixel is outside the buffer
 					if (color != background_color and attribute_buffer[screen_buffer_index] == background_color) {
 						to_clear_indexs[clear_indexes_amount] = screen_buffer_index;
 						clear_indexes_amount++;
@@ -660,10 +665,10 @@ namespace egn { // |Game Engine / GUI| API namspace
 		}
 	}
 
+
 	class Devices {
 
-		// atributtes:
-	private:
+	private: // Atributtes
 		HANDLE handle;
 		Pair mouse_position = {0, 0};
 		int mouse_key = -1;
@@ -672,10 +677,8 @@ namespace egn { // |Game Engine / GUI| API namspace
 
 		std::thread input_thread;
 
-		//public:
 
-		// methods:
-	private:
+	private: // Methods
 		void keyboard_release() {
 			key = -1;
 		}
@@ -683,7 +686,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			mouse_key = -1;
 		}
 
-	public:
+	public: // Methods
 		void init(int accuracy = 1) {
 			handle = GetStdHandle(STD_INPUT_HANDLE);
 			SetConsoleMode(handle, 16 | ENABLE_WINDOW_INPUT);
@@ -716,6 +719,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 	};
 
 
+
 	class Sound {
 
 
@@ -727,11 +731,13 @@ namespace egn { // |Game Engine / GUI| API namspace
 		}
 	};
 
+
+
 	namespace tls {
-		//namespace for tiles class and other future staff mayby
+		// Namespace for tiles class and other future staff mayby...
 		
 		const int MAX_TILES_AMOUNT = 10;
-		//const int TILE_SIZE = 20;
+		// const int TILE_SIZE = 20;
 		const std::string ASSETS_PATH = "./assets";
 		const std::string IMAGES_PATH = ASSETS_PATH + "/images/";
 
