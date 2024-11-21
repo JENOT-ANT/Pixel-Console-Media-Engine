@@ -1,9 +1,8 @@
-// |Game Engine / GUI| -> API library
+// Game Engine / GUI Library
 
-// Copyleft !(c) Public Domain with restrictions* (read more at the begining of source file or in documentation)
+// Copyleft !(c) Public Domain with restrictions* (read more at the begining of this source file)
 
 /*
-
 coded by <JENOT>
 
 	0 1 0
