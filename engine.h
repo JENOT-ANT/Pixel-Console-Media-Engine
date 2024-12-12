@@ -499,7 +499,7 @@ namespace egn { // |Game Engine / GUI| API namspace
 			SIZE = size;
 			RESOLUTION = SIZE.x * SIZE.y;
 
-			to_clear_indexs = new int[RESOLUTION * 2];//*2 for safty to not overflow this buffer
+			to_clear_indexs = new int[RESOLUTION * 2];// * 2 for safety against overflowing this buffer
 			clear_indexes_amount = 0;
 			//update = false;
 
